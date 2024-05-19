@@ -16,9 +16,9 @@ namespace BulkyWeb.Controllers
             List<Category> objCategoryList = _db.Categories.ToList();
             return View(objCategoryList);
         }
-        public IActionResult Create() 
-        { 
-        return View();
+        public IActionResult Create()
+        {
+            return View();
         }
         [HttpPost]
         public IActionResult Create(Category obj)
@@ -38,8 +38,8 @@ namespace BulkyWeb.Controllers
         }
         public IActionResult Edit(int? id)
         {
-            if(id == null || id == 0)
-            { 
+            if (id == null || id == 0)
+            {
                 return NotFound();
             }
             Category? categoryFromDb = _db.Categories.Find(id);
