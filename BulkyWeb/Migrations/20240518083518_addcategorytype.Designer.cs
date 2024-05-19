@@ -12,7 +12,7 @@ namespace BulkyWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240518083518_addcategorytype")]
-    partial class addcategorytype
+    partial class Addcategorytype
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
