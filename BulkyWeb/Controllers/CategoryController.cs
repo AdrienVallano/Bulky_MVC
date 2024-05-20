@@ -1,5 +1,5 @@
-﻿using BulkyWeb.Data;
-using BulkyWeb.Models;
+﻿using BulkyWeb.DataAccess.Data;
+using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyWeb.Controllers
@@ -15,12 +15,8 @@ namespace BulkyWeb.Controllers
         {
             List<Category> objCategoryList = _db.Categories.ToList();
             return View(objCategoryList);
-        }
-<<<<<<<<< Temporary merge branch 1
-<<<<<<< HEAD
-=========
 
->>>>>>>>> Temporary merge branch 2
+        }
         public IActionResult Create()
         {
             return View();
@@ -98,11 +94,5 @@ namespace BulkyWeb.Controllers
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
-<<<<<<<<< Temporary merge branch 1
-=======
->>>>>>> 40d26cc49d3f6fb7a9bf95d13df54629094c1b43
-=========
-
->>>>>>>>> Temporary merge branch 2
     }
 }
