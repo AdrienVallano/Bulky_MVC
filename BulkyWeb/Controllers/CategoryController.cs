@@ -16,7 +16,8 @@ namespace BulkyWeb.Controllers
             List<Category> objCategoryList = _db.Categories.ToList();
             return View(objCategoryList);
         }
-
+<<<<<<<<< Temporary merge branch 1
+=========
         public IActionResult Create()
         {
             return View();
@@ -94,6 +95,6 @@ namespace BulkyWeb.Controllers
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
-
+>>>>>>>>> Temporary merge branch 2
     }
 }
