@@ -94,6 +94,5 @@ namespace BulkyWeb.Controllers
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
-
     }
 }
