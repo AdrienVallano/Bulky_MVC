@@ -1,7 +1,5 @@
-﻿
-using Bulky.Models;
+﻿using Bulky.Models;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace BulkyWeb.DataAccess.Data
 {
