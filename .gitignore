@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+#Ignorer appsettings.json pour gestion connexion base de données.
+BulkyWeb/appsettings.json
