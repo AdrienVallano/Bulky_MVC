@@ -1,6 +1,5 @@
 ﻿using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
-using BulkyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyWeb.Areas.Admin.Controllers
@@ -9,20 +8,23 @@ namespace BulkyWeb.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+
         public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
+
         public IActionResult Index()
         {
             List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
-
         }
+
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Create(Category obj)
         {
@@ -40,6 +42,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             }
             return View();
         }
+
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -48,7 +51,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             }
             Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u=> u.Id==id);
-            //Category? categoryFromDb3 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault(); 
+            //Category? categoryFromDb3 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -56,6 +59,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
             return View(categoryFromDb);
         }
+
         [HttpPost]
         public IActionResult Edit(Category obj)
         {
@@ -68,6 +72,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             }
             return View();
         }
+
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -76,7 +81,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             }
             Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u=> u.Id==id);
-            //Category? categoryFromDb3 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault(); 
+            //Category? categoryFromDb3 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -84,6 +89,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
             return View(categoryFromDb);
         }
+
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {

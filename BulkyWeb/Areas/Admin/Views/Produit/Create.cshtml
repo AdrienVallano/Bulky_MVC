@@ -1,0 +1,68 @@
+﻿@model Bulky.Models.Produit
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 ">
+    <div class="row">
+        <div class="col-12 text-center">
+                <h2 class="text-secondary py-1">Ajouter nouveau produit.</h2>
+        </div>
+    </div>
+    </div>
+    <div class="card-body p-3">
+        <form method="post" class="row">
+            <div class="row p-1">
+                <label asp-for="Titre" class="pt-0"></label>
+                <input asp-for="Titre" class="form-control" />
+                <span asp-validation-for="Titre" class="text-danger"></span>
+            </div>
+            <div class="row p-1">
+                <label asp-for="Description" class="pt-0"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label asp-for="ISBN" class="pt-0"></label>
+                <input asp-for="ISBN" class="form-control" />
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label asp-for="Auteur" class="pt-0"></label>
+                <input asp-for="Auteur" class="form-control" />
+                <span asp-validation-for="Auteur" class="text-danger"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label asp-for="ListePrix" class="pt-0"></label>
+                <input asp-for="ListePrix" class="form-control" />
+                <span asp-validation-for="ListePrix" class="text-danger"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label asp-for="Prix" class="pt-0"></label>
+                <input asp-for="Prix" class="form-control" />
+                <span asp-validation-for="Prix" class="text-danger"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label asp-for="Prix50" class="pt-0"></label>
+                <input asp-for="Prix50" class="form-control" />
+                <span asp-validation-for="Prix50" class="text-danger"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label asp-for="Prix100" class="pt-0"></label>
+                <input asp-for="Prix100" class="form-control" />
+                <span asp-validation-for="Prix100" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a asp-controller="Produit" asp-action="Index" class="btn btn-secondary form-control btn-outline-secondary">Retour à la liste</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

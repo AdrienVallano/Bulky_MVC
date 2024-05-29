@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BulkyWeb.DataAccess.Migrations
+namespace Bulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240528193739_AjoutProduit")]
-    partial class AjoutProduit
+    [Migration("20240529145232_Fo")]
+    partial class Fo
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,9 @@ namespace BulkyWeb.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -103,13 +106,16 @@ namespace BulkyWeb.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("produits");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Produits");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Auteur = "Billy Spark",
+                            CategoryId = 1,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "SWD9999001",
                             ListePrix = 99.0,
@@ -122,6 +128,7 @@ namespace BulkyWeb.DataAccess.Migrations
                         {
                             Id = 2,
                             Auteur = "Nancy Hoover",
+                            CategoryId = 2,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "CAW777777701",
                             ListePrix = 40.0,
@@ -134,6 +141,7 @@ namespace BulkyWeb.DataAccess.Migrations
                         {
                             Id = 3,
                             Auteur = "Julian Button",
+                            CategoryId = 2,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "RITO5555501",
                             ListePrix = 55.0,
@@ -146,6 +154,7 @@ namespace BulkyWeb.DataAccess.Migrations
                         {
                             Id = 4,
                             Auteur = "Abby Muscles",
+                            CategoryId = 2,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "WS3333333301",
                             ListePrix = 70.0,
@@ -158,6 +167,7 @@ namespace BulkyWeb.DataAccess.Migrations
                         {
                             Id = 5,
                             Auteur = "Ron Parker",
+                            CategoryId = 3,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "SOTJ1111111101",
                             ListePrix = 30.0,
@@ -170,6 +180,7 @@ namespace BulkyWeb.DataAccess.Migrations
                         {
                             Id = 6,
                             Auteur = "Laura Phantom",
+                            CategoryId = 3,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "FOT000000001",
                             ListePrix = 25.0,
@@ -178,6 +189,17 @@ namespace BulkyWeb.DataAccess.Migrations
                             Prix50 = 22.0,
                             Titre = "Leaves and Wonders"
                         });
+                });
+
+            modelBuilder.Entity("Bulky.Models.Produit", b =>
+                {
+                    b.HasOne("Bulky.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

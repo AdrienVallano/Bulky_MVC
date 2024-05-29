@@ -5,13 +5,12 @@ namespace BulkyWeb.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
         }
+
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Produit> produits { get; set; }
+        public DbSet<Produit> Produits { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,7 +31,8 @@ namespace BulkyWeb.DataAccess.Data
                     ListePrix = 99,
                     Prix = 90,
                     Prix50 = 85,
-                    Prix100 = 80
+                    Prix100 = 80,
+                    CategoryId = 1
                 },
                 new Produit
                 {
@@ -44,7 +44,8 @@ namespace BulkyWeb.DataAccess.Data
                     ListePrix = 40,
                     Prix = 30,
                     Prix50 = 25,
-                    Prix100 = 20
+                    Prix100 = 20,
+                    CategoryId = 2
                 },
                 new Produit
                 {
@@ -56,7 +57,8 @@ namespace BulkyWeb.DataAccess.Data
                     ListePrix = 55,
                     Prix = 50,
                     Prix50 = 40,
-                    Prix100 = 35
+                    Prix100 = 35,
+                    CategoryId = 2
                 },
                 new Produit
                 {
@@ -68,7 +70,8 @@ namespace BulkyWeb.DataAccess.Data
                     ListePrix = 70,
                     Prix = 65,
                     Prix50 = 60,
-                    Prix100 = 55
+                    Prix100 = 55,
+                    CategoryId = 2
                 },
                 new Produit
                 {
@@ -80,7 +83,8 @@ namespace BulkyWeb.DataAccess.Data
                     ListePrix = 30,
                     Prix = 27,
                     Prix50 = 25,
-                    Prix100 = 20
+                    Prix100 = 20,
+                    CategoryId = 3
                 },
                 new Produit
                 {
@@ -92,10 +96,9 @@ namespace BulkyWeb.DataAccess.Data
                     ListePrix = 25,
                     Prix = 23,
                     Prix50 = 22,
-                    Prix100 = 20
+                    Prix100 = 20,
+                    CategoryId = 3
                 }
-
-
 
                 );
         }
