@@ -1,7 +1,7 @@
 ﻿@model List<Produit>
 <partial name="_Notification"/>
     <div class="container">
-        <div class="row pb-3">
+        <div class="row pt-4 pb-3">
             <div class="col-6">
                <h2 class="text-secondary">Liste des Produits</h2>
             </div>
@@ -12,13 +12,14 @@
 
         </div>
 
-<table class="table table-hover">
+    <table class="table table-hover table-striped">
     <tr>
-        <th>Titre</th>
-        <th>ISBN</th>
-        <th>Prix</th>
-        <th>Auteur</th>
-        <th>Category</th>
+            <th class="bg-secondary">Titre</th>
+            <th class="bg-secondary">ISBN</th>
+            <th class ="bg-secondary">Prix</th>
+            <th class="bg-secondary">Auteur</th>
+            <th class ="bg-secondary">Category</th>
+            <th class="bg-secondary"></th>
     </tr>
         <tbody>
         @foreach (var obj in Model)
@@ -31,11 +32,11 @@
                     <td></td>
                 <td>
                     <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Modification
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <li><a asp-controller="Produit" asp-action="Edit" asp-route-id="@obj.Id" typr="button" class="btn btn-primary mx-2 rounded"><i class="bi bi-pencil-square"></i> Edit</a></li>
+                                <li><a asp-controller="Produit" asp-action="Edit" asp-route-id="@obj.Id" typr="button" class="btn btn-primary mx-2 pe-4 rounded mb-2"><i class="bi bi-pencil-square"></i> Edit</a></li>
                                 <li><a asp-controller="Produit" asp-action="Delete" asp-route-id="@obj.Id" typr="button" class=" btn btn-danger mx-2 rounded"><i class="bi bi-trash3"></i> Delete</a></li>
                             </ul>
                     </div>
