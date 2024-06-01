@@ -58,7 +58,11 @@
                 </select>
                 <span asp-validation-for="Produit.CategoryId" class="text-danger"></span>
             </div>
-
+            <div class="">
+                <label asp-for="Produit.ImageUrl" class="py-2"></label>
+                <input asp-for="Produit.ImageUrl" class="form-control" />
+                <span asp-validation-for="Produit.ImageUrl" class="text-danger"></span>
+            </div>
 
             <div class="d-inline-flex justify-content-around mt-5">
                 <div class="col-6 col-md-3">

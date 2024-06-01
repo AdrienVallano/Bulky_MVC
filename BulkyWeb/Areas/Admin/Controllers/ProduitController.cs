@@ -37,25 +37,32 @@ namespace BulkyWeb.Areas.Admin.Controllers
             };
             return View(produitVM);
         }
-
+        /// <summary>
+        /// Creation d'un élément avec reaffichage de la vue en cas d'erreur si le modèle n'est pas valide.
+        /// </summary>
+        /// <param name="produitVM"></param>
+        /// <returns></returns>
         [HttpPost]
-        public IActionResult Create(Produit obj)
+        public IActionResult Create(ProduitVM produitVM)
         {
-            //if (obj.Name == obj.DisplayOrder.ToString())
-            //{
-            //    ModelState.AddModelError("name", "The DispalyOrder cannot exactly match the Name");
-            //}
+            
             if (ModelState.IsValid)
             {
-                _unitOfWork.Produit.Add(obj);
-
+                _unitOfWork.Produit.Add(produitVM.Produit);
                 _unitOfWork.Save();
                 TempData["success"] = "Produit créér avec succés";
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                produitVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+            };
+            return View(produitVM);
         }
-
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
