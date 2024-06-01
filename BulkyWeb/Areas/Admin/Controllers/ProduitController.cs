@@ -1,5 +1,6 @@
 ﻿using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
+using Bulky.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -24,15 +25,17 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
 
         public IActionResult Create()
-        {
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+        { 
+            ProduitVM produitVM = new()
             {
-                Text = u.Name,
-                Value = u.Id.ToString()
-            });
-            ViewBag.CategoryList = CategoryList;
-
-            return View();
+                CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+                Produit = new()
+            };
+            return View(produitVM);
         }
 
         [HttpPost]
