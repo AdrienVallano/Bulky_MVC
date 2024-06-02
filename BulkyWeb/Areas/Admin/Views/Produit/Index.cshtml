@@ -1,51 +1,35 @@
 ﻿@model List<Produit>
+
 <partial name="_Notification"/>
     <div class="container">
         <div class="row pt-4 pb-3">
             <div class="col-6">
-               <h2 class="text-secondary">Liste des Produits</h2>
+            <h2 class="">Liste des Produits</h2>
             </div>
                 
             <div class="col-6 text-end">
-            <a asp-area="Admin" asp-controller="Produit" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Ajout livre</a>
+            <a asp-area="Admin" asp-controller="Produit" asp-action="Upsert" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Ajout produit</a>
             </div>
 
         </div>
 
-    <table class="table table-hover table-striped">
-    <tr>
+    <table id="myTable" class="table table-hover table-striped">
+        <thead>
+    <tr class="">
             <th class="bg-secondary">Titre</th>
             <th class="bg-secondary">ISBN</th>
             <th class ="bg-secondary">Prix</th>
             <th class="bg-secondary">Auteur</th>
             <th class ="bg-secondary">Category</th>
             <th class="bg-secondary"></th>
-    </tr>
-        <tbody>
-        @foreach (var obj in Model)
-        {
-            <tr>
-                    <td>@obj.Titre</td>
-                    <td>@obj.ISBN</td>
-                    <td>@obj.ListePrix</td>
-                    <td>@obj.Auteur</td>
-                    <td></td>
-                <td>
-                    <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Modification
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <li><a asp-controller="Produit" asp-action="Edit" asp-route-id="@obj.Id" typr="button" class="btn btn-primary mx-2 pe-4 rounded mb-2"><i class="bi bi-pencil-square"></i> Edit</a></li>
-                                <li><a asp-controller="Produit" asp-action="Delete" asp-route-id="@obj.Id" typr="button" class=" btn btn-danger mx-2 rounded"><i class="bi bi-trash3"></i> Delete</a></li>
-                            </ul>
-                    </div>
-                </td>
-    
             </tr>
-        }
-        </tbody>  
+        </thead>
+        
 
+        
 </table>
 </div>
-    
+
+@section Scripts{
+    <script src="/js/product.js"></script>
+}

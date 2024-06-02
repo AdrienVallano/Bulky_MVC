@@ -42,11 +42,13 @@ namespace Bulky.Models
         public double Prix100 { get; set; }
 
         public int CategoryId { get; set; }
+
         [ForeignKey("CategoryId")]
         [DisplayName("Categorie")]
         [ValidateNever]
         public Category Category { get; set; }
+
         [ValidateNever]
-        public string ImageUrl { get; set; }    
+        public string ImageUrl { get; set; }
     }
 }
