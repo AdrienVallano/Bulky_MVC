@@ -22,6 +22,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
+
             return View();
         }
 
