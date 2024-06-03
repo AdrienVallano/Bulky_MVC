@@ -182,6 +182,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             _unitOfWork.Produit.Remove(objASupprimer);
             _unitOfWork.Save();
 
+            TempData["success"] = "Article supprimer";
             return Json(new { success = true, message = "Suppression ok." });
         }
         #endregion
