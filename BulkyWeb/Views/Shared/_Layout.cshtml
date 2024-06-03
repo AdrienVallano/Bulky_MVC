@@ -6,9 +6,12 @@
     <title>@ViewData["Title"] - BulkyWeb</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
     <link rel="stylesheet" href="~/BulkyWeb.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="/lib/toastr.js/toastr.css" />
+    <link rel="stylesheet" href="/lib/datatables/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
     
 </head>
 <body>
@@ -35,13 +38,13 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gestion des contenus
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="shadow dropdown-menu">
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                    <a class=" nav-link text-light" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
                                 </li>
-                                <li><hr class="dropdown-divider"></li>
+                                <li><hr class="dropdown-divider-bg"></li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Produit" asp-action="Index">Produit</a>
+                                    <a class="nav-link text-light" asp-area="Admin" asp-controller="Produit" asp-action="Index">Produit</a>
                                 </li>
                                 
                             </ul>
@@ -61,10 +64,17 @@
     <footer class="border-top footer bg-primary text-muted">
         <div class="container text-center">
             &copy; 2024 - BulkyWeb - <i class="bi bi-heart-fill"> by Bambou-Web</i>
+            </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="/lib/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="/lib/datatables/js/jquery.dataTables.js" asp-append-version="true"></script>
+    <script src="/lib/sweetalert2/sweetalert2.all.js"></script>
+
+
+  
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

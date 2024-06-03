@@ -20,3 +20,13 @@ html {
 body {
     margin-bottom: 60px;
 }
+
+h2 {
+    color: white;
+    font-weight: 600;
+}
+
+.paginate_button.current{
+    color: #333;
+    background-color:#333;
+}
