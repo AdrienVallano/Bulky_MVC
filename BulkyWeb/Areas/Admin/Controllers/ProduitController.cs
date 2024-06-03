@@ -3,8 +3,6 @@ using Bulky.Models;
 using Bulky.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Options;
-using System.Drawing;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
