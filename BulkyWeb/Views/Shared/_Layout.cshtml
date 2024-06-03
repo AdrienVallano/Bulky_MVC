@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/lib/datatables/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-    
+
 </head>
 <body>
     <header>
@@ -24,12 +24,12 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
                         </li> *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -46,11 +46,10 @@
                                 <li class="dropdown-item">
                                     <a class="nav-link text-light" asp-area="Admin" asp-controller="Produit" asp-action="Index">Produit</a>
                                 </li>
-                                
                             </ul>
                         </li>
-
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -64,7 +63,7 @@
     <footer class="border-top footer bg-primary text-muted">
         <div class="container text-center">
             &copy; 2024 - BulkyWeb - <i class="bi bi-heart-fill"> by Bambou-Web</i>
-            </div>
+        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -74,7 +73,7 @@
     <script src="/lib/sweetalert2/sweetalert2.all.js"></script>
 
 
-  
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

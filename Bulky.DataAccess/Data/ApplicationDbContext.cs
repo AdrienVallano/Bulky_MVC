@@ -13,6 +13,7 @@ namespace BulkyWeb.DataAccess.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Produit> Produits { get; set; }
+        public DbSet<ApplicationUser> Utilisateurs { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
