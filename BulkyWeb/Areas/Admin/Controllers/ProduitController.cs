@@ -3,8 +3,6 @@ using Bulky.Models;
 using Bulky.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Options;
-using System.Drawing;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
@@ -16,12 +14,12 @@ namespace BulkyWeb.Areas.Admin.Controllers
         public ProduitController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
-            _webHostEnvironment = webHostEnvironment;   
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
         {
-            List<Produit> objProduitList = _unitOfWork.Produit.GetAll(includeProperties:"Category").ToList();
+            List<Produit> objProduitList = _unitOfWork.Produit.GetAll(includeProperties: "Category").ToList();
 
             return View(objProduitList);
         }
@@ -62,7 +60,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             {
                 //Permet de d'acceder au dossier Root du serveur Web.
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if(file != null)
+                if (file != null)
                 {
                     // Permet de renomer le fichier télécharger lors de l'import.
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
@@ -70,7 +68,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     string productPath = Path.Combine(wwwRootPath, @"images\produit");
 
                     //Verification de l'existence d'une imge
-                    if (!string.IsNullOrEmpty (produitVM.Produit.ImageUrl))
+                    if (!string.IsNullOrEmpty(produitVM.Produit.ImageUrl))
                     {
                         //suppression de l'image existante.
                         var oldImagePath = Path.Combine(wwwRootPath, produitVM.Produit.ImageUrl.TrimStart('\\'));
@@ -79,9 +77,9 @@ namespace BulkyWeb.Areas.Admin.Controllers
                             System.IO.File.Delete(oldImagePath);
                         }
                     }
-                   
+
                     //Permet de renommer l'image et de enregistrer
-                    using (var filestream = new FileStream(Path.Combine(productPath, fileName),FileMode.Create))
+                    using (var filestream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(filestream);
                     }
@@ -98,7 +96,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 //_unitOfWork.Produit.Update(produitVM.Produit);
                 _unitOfWork.Save();
 
-                TempData["success"] = "Produit créér avec succés";
+                TempData["success"] = "Produit mis à jour avec succés";
                 return RedirectToAction("Index");
             }
             else
@@ -149,14 +147,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
             List<Produit> objProduitList = _unitOfWork.Produit.GetAll(includeProperties: "Category").ToList();
             return Json(new { data = objProduitList });
         }
-        [HttpDelete]      
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            var objASupprimer = _unitOfWork.Produit.Get(u=>u.Id == id);   
-            if(objASupprimer == null)
-                {
-                    return Json(new { success = false, message = "Supperssion impossible." });
-                }
+            var objASupprimer = _unitOfWork.Produit.Get(u => u.Id == id);
+            if (objASupprimer == null)
+            {
+                return Json(new { success = false, message = "Supperssion impossible." });
+            }
 
             //var oldImagePath = 
             //    Path.Combine(_webHostEnvironment.WebRootPath, 
@@ -182,6 +180,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             _unitOfWork.Produit.Remove(objASupprimer);
             _unitOfWork.Save();
 
+            TempData["success"] = "Article supprimer";
             return Json(new { success = true, message = "Suppression ok." });
         }
         #endregion
