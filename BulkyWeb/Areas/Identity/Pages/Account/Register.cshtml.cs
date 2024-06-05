@@ -2,15 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
-using Bulky.Models;
 using Bulky.Models;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Authentication;
@@ -112,6 +103,12 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
             public string? Role { get; set; }
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
+            [Required]
+            public string Nom { get; set; }
+            public string Adresse { get; set; }
+            public string Ville { get; set; }
+            public string CodePostal { get; set; }
+            public string PhoneNumber { get; set; }
 
         }
 
@@ -145,9 +142,14 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-                
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.Nom = Input.Nom;
+                user.Adresse = Input.Adresse;
+                user.Ville = Input.Ville;
+                user.CodePostal = Input.CodePostal;
+                user.PhoneNumber = Input.PhoneNumber;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
