@@ -1,0 +1,66 @@
+﻿@model Entreprise
+<partial name="_Notification"/>
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 ">
+    <div class="row">
+        <div class="col-12 text-center">
+                <h2 class="text-success-emphasis py-1">@(Model.Id!=0?"Mis à jour de ":"Création de ")l'entreprise.</h2>
+        </div>
+    </div>
+    </div>
+    <div class="card-body d-inline-flex gap-5">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="@Model.Id" hidden />
+            <div class="" >
+                <label asp-for="@Model.Nom" class="py-2"></label>
+                <input asp-for="@Model.Nom" class="form-control" />
+                <span asp-validation-for="@Model.Nom" class="text-danger"></span>
+            </div>
+            <div class="">
+                <label asp-for="@Model.Adresse" class="py-2 text-muted"></label>
+                <textarea asp-for="@Model.Adresse" id="tiny" class="py-2"></textarea>
+            </div>
+            <div class="">
+                <label asp-for="@Model.Ville" class="py-2"></label>
+                <input asp-for="@Model.Ville" class="form-control" />
+                <span asp-validation-for="@Model.Ville" class="text-danger"></span>
+            </div>
+            <div class="">
+                <label asp-for="@Model.Code" class="py-2"></label>
+                <input asp-for="@Model.Code" class="form-control" />
+                <span asp-validation-for="@Model.Code" class="text-danger"></span>
+            </div>
+            <div class="">
+                <label asp-for="@Model.PhoneNumber" class="py-2"></label>
+                <input asp-for="@Model.PhoneNumber" class="form-control" />
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="d-inline-flex justify-content-around mt-5">
+                <div class="col-6 col-md-3">
+                    @if (@Model.Id != 0)
+                    {
+                        <button type="submit" class="btn btn-primary form-control py-2">Mettre à jour</button>
+                    }
+                    else
+                    {
+                       <button type="submit" class="btn btn-primary form-control py-2">Création</button> 
+                    }
+                </div>
+                <div class="col-6 col-md-3">
+                    <a asp-controller="Entreprise" asp-action="Index" class="btn btn-secondary form-control btn-outline-white py-2">Retour à la liste</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        
+        tinymce.init({
+            selector: 'textarea#tiny'
+        });
+            </script>
+    @{
+            <partial name="_ValidationScriptsPartial" />
+    }
+}
