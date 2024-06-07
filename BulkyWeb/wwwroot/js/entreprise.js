@@ -23,8 +23,8 @@ function loadDataTable() {
         "columns": [
             { data: 'nom', "width": "15%" },
             { data: 'adresse', "width": "25%" },
-            { data: 'ville', "width": "10%" },
-            { data: 'code', "width": "15%" },
+            { data: 'ville', "width": "20%" },
+            { data: 'code', "width": "5%" },
             { data: 'phoneNumber', "width": "10%" },
             {
                 data: 'id',
@@ -62,7 +62,6 @@ function Delete(url) {
                 success: function (data) {
                     toastr.success(data.message);
                     dataTable.ajax.reload();
-                    
                 }
             })
         }

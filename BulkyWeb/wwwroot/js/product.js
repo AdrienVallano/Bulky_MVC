@@ -60,8 +60,8 @@ function Delete(url) {
                 url: url,
                 type: 'DELETE',
                 success: function (data) {
-                    dataTable.ajax.reload();
                     toastr.success(data.message);
+                    dataTable.ajax.reload();
                 }
             })
         }

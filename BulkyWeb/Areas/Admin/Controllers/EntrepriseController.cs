@@ -13,7 +13,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public EntrepriseController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
+        public EntrepriseController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
