@@ -13,6 +13,10 @@
     <None Remove="Areas\Identity\Data\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\js\product.js" />
+  </ItemGroup>
+
   <!--<ItemGroup>
     <Content Remove="wwwroot\js\product.js" />
   </ItemGroup>
@@ -51,6 +55,7 @@
 
   <ItemGroup>
     <None Include="wwwroot\js\product.js" />
+    <None Include="wwwroot\js\entreprise.js" />
   </ItemGroup>
 
 </Project>
