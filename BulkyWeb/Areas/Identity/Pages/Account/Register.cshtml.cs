@@ -73,13 +73,10 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
-
-
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -87,29 +84,28 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
             [Display(Name = "Password")]
             public string Password { get; set; }
 
-
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "Les mots de passe ne correspondent pas.")]
             public string ConfirmPassword { get; set; }
 
-
-
             public string? Role { get; set; }
+
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
+
             [Required]
             public string Nom { get; set; }
+
             public string Adresse { get; set; }
             public string Ville { get; set; }
             public string CodePostal { get; set; }
             public string PhoneNumber { get; set; }
             public int? EntrepriseId { get; set; }
+
             [ValidateNever]
             public IEnumerable<SelectListItem> ListeEntreprise { get; set; }
-
         }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -153,6 +149,10 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
                 user.Ville = Input.Ville;
                 user.CodePostal = Input.CodePostal;
                 user.PhoneNumber = Input.PhoneNumber;
+                if (Input.Role == SD.Role_Company)
+                {
+                    user.EntrepriseId = Input.EntrepriseId;
+                }
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -167,7 +167,6 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, SD.Role_Customer);
                     }
-
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

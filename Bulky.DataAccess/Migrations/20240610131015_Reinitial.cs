@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Bulky.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial2 : Migration
+    public partial class Reinitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -228,6 +228,33 @@ namespace Bulky.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ShoppingCarts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProduitId = table.Column<int>(type: "int", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_Produits_ProduitId",
+                        column: x => x.ProduitId,
+                        principalTable: "Produits",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "DisplayOrder", "Name" },
@@ -299,6 +326,16 @@ namespace Bulky.DataAccess.Migrations
                 name: "IX_Produits_CategoryId",
                 table: "Produits",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_ApplicationUserId",
+                table: "ShoppingCarts",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_ProduitId",
+                table: "ShoppingCarts",
+                column: "ProduitId");
         }
 
         /// <inheritdoc />
@@ -320,7 +357,7 @@ namespace Bulky.DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Produits");
+                name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -329,10 +366,13 @@ namespace Bulky.DataAccess.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Produits");
 
             migrationBuilder.DropTable(
                 name: "Entreprises");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

@@ -14,6 +14,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;
+
         public ProduitController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
@@ -113,6 +114,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             };
             return View(produitVM);
         }
+
         //public IActionResult Delete(int? id)
         //{
         //    if (id == null || id == 0)
@@ -143,13 +145,16 @@ namespace BulkyWeb.Areas.Admin.Controllers
         //    TempData["success"] = "Produit supprimer";
         //    return RedirectToAction("Index");
         //}
+
         #region DataTables Appel API
+
         [HttpGet]
         public IActionResult GetAll()
         {
             List<Produit> objProduitList = _unitOfWork.Produit.GetAll(includeProperties: "Category").ToList();
             return Json(new { data = objProduitList });
         }
+
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
@@ -159,8 +164,8 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 return Json(new { success = false, message = "Supperssion impossible." });
             }
 
-            //var oldImagePath = 
-            //    Path.Combine(_webHostEnvironment.WebRootPath, 
+            //var oldImagePath =
+            //    Path.Combine(_webHostEnvironment.WebRootPath,
             //    objASupprimer.ImageUrl.TrimStart('\\'));
 
             //if (System.IO.File.Exists(oldImagePath))
@@ -186,6 +191,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             TempData["success"] = "Article supprimer";
             return Json(new { success = true, message = "Suppression ok." });
         }
-        #endregion
+
+        #endregion DataTables Appel API
     }
 }

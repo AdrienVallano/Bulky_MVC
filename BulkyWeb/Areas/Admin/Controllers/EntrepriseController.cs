@@ -4,7 +4,6 @@ using Bulky.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -27,7 +26,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id) //update & insert
         {
-
             // Creation de l'article si le id est nulle ou si il n'existe pas
             if (id == null || id == 0)
             {
@@ -36,17 +34,16 @@ namespace BulkyWeb.Areas.Admin.Controllers
             else
             // Mis à jour de l'article
             {
-
                 Entreprise entrepriseObj = _unitOfWork.Entreprise.Get(u => u.Id == id);
                 return View(entrepriseObj);
             }
         }
+
         [HttpPost]
         public IActionResult Upsert(Entreprise EntrepriseObj)
         {
             if (ModelState.IsValid)
             {
-
                 if (EntrepriseObj.Id == 0)
                 {
                     _unitOfWork.Entreprise.Add(EntrepriseObj);
@@ -64,18 +61,19 @@ namespace BulkyWeb.Areas.Admin.Controllers
             }
             else
             {
-
                 return View(EntrepriseObj);
             }
         }
 
         #region DataTables Appel API
+
         [HttpGet]
         public IActionResult GetAll()
         {
             List<Entreprise> objEntrepriseList = _unitOfWork.Entreprise.GetAll().ToList();
             return Json(new { data = objEntrepriseList });
         }
+
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
@@ -85,13 +83,13 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 return Json(new { success = false, message = "Supperssion impossible." });
             }
 
-
             _unitOfWork.Entreprise.Remove(objASupprimer);
             _unitOfWork.Save();
 
             TempData["success"] = "Article supprimer";
             return Json(new { success = true, message = "Suppression ok." });
         }
-        #endregion
+
+        #endregion DataTables Appel API
     }
 }
