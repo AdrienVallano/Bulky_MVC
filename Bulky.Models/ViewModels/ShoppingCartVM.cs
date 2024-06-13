@@ -3,7 +3,7 @@
     public class ShoppingCartVM
     {
         public IEnumerable<ShoppingCart> PanierListeAchat { get; set; }
-        public double OrderTotal { get; set; }
+        public EnteteCommande EnteteCommande { get; set; }
 
     }
 }
