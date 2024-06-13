@@ -16,6 +16,8 @@ namespace BulkyWeb.DataAccess.Data
         public DbSet<ApplicationUser> Utilisateurs { get; set; }
         public DbSet<Entreprise> Entreprises { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<DetailCommande> DetailCommandes { get; set; }
+        public DbSet<EnteteCommande> EntetesCommandes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

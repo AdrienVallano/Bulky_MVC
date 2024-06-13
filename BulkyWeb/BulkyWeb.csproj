@@ -50,12 +50,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\produit\" />
+    <None Include="wwwroot\js\product.js" />
+    <None Include="wwwroot\js\entreprise.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\product.js" />
-    <None Include="wwwroot\js\entreprise.js" />
+    <Folder Include="wwwroot\images\produit\" />
   </ItemGroup>
 
 </Project>
