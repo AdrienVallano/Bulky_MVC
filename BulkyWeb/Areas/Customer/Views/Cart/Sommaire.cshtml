@@ -31,15 +31,16 @@
 								</div>
 								<div class="col-9">
 									<input asp-for="EnteteCommande.Nom" class="form-control" />
-									<span asp-validation-for="EnteteCommande.Nom" class="text-danger"></span>"
+									<span asp-validation-for="EnteteCommande.Nom" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
 								<div class="col-3">
-									<label>PhoneNumber</label>
+									<label>Téléphone</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" />
+									<input asp-for="EnteteCommande.PhoneNumber" class="form-control" />
+									<span asp-validation-for="EnteteCommande.PhoneNumber" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
@@ -47,7 +48,8 @@
 									<label>Addresse</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" />
+									<input asp-for="EnteteCommande.Addresse" class="form-control" />
+									<span asp-validation-for="EnteteCommande.Addresse" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
@@ -55,23 +57,25 @@
 									<label>Ville</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" />
+									<input asp-for="EnteteCommande.Ville" class="form-control" />
+									<span asp-validation-for="EnteteCommande.Ville" class="text-danger"></span>
 								</div>
 							</div>
 							@* <div class="row my-1">
 								<div class="col-3">
 									<label>State</label>
-								</div> *@
+								</div>
 								<div class="col-9">
 									<input class="form-control" />
 								</div>
-							</div>
+							</div> *@
 							<div class="row my-1">
 								<div class="col-3">
 								<label>CodePostal</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" />
+								<input asp-for="EnteteCommande.CodePostal" class="form-control" />
+								<span asp-validation-for="EnteteCommande.CodePostal" class="text-danger"></span>
 								</div>
 							</div>
 						</div>
