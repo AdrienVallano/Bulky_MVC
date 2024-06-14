@@ -29,6 +29,16 @@ namespace BulkyWeb.Areas.Customer.Controllers
                 PanierListeAchat = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId, includeProperties: "Produit"),
                 EnteteCommande = new()
             };
+
+            ShoppingCartVM.EnteteCommande.ApplicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+
+            ShoppingCartVM.EnteteCommande.Nom = ShoppingCartVM.EnteteCommande.ApplicationUser.Nom;
+            ShoppingCartVM.EnteteCommande.PhoneNumber = ShoppingCartVM.EnteteCommande.ApplicationUser.PhoneNumber;
+            ShoppingCartVM.EnteteCommande.Addresse = ShoppingCartVM.EnteteCommande.ApplicationUser.Adresse;
+            ShoppingCartVM.EnteteCommande.Ville = ShoppingCartVM.EnteteCommande.ApplicationUser.Ville;
+            ShoppingCartVM.EnteteCommande.CodePostal = ShoppingCartVM.EnteteCommande.ApplicationUser.CodePostal;
+
+
             foreach (var pannier in ShoppingCartVM.PanierListeAchat)
             {
                 pannier.Prix = PrixBaseSurQuantite(pannier);
@@ -39,6 +49,19 @@ namespace BulkyWeb.Areas.Customer.Controllers
         }
         public IActionResult Sommaire()
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            string userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            ShoppingCartVM = new()
+            {
+                PanierListeAchat = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId, includeProperties: "Produit"),
+                EnteteCommande = new()
+            };
+            foreach (var pannier in ShoppingCartVM.PanierListeAchat)
+            {
+                pannier.Prix = PrixBaseSurQuantite(pannier);
+                ShoppingCartVM.EnteteCommande.TotalCommande += (pannier.Prix * pannier.Count);
+            }
             return View();
         }
 

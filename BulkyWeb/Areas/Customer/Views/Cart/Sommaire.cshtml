@@ -1,4 +1,4 @@
-﻿
+﻿@model ShoppingCartVM
 <form method="post">
 	<br />
 	<div class="container">
@@ -8,11 +8,11 @@
 				<div class="row px-4">
 					<div class="col-6">
 						<h5 class="pt-2 text-white">
-							Shopping Cart
+							Panier
 						</h5>
 					</div>
 					<div class="col-6 text-end">
-						<a class="btn btn-outline-danger btn-sm">Back to Cart</a>
+						<a asp-action="Index" class="btn btn-outline-danger btn-sm">Revenir au panier</a>
 					</div>
 				</div>
 			</div>
@@ -27,7 +27,16 @@
 							</div>
 							<div class="row my-1">
 								<div class="col-3">
-									<label>Name</label>
+									<label>Nom</label>
+								</div>
+								<div class="col-9">
+									<input asp-for="EnteteCommande.Nom" class="form-control" />
+									<span asp-validation-for="EnteteCommande.Nom" class="text-danger"></span>"
+								</div>
+							</div>
+							<div class="row my-1">
+								<div class="col-3">
+									<label>PhoneNumber</label>
 								</div>
 								<div class="col-9">
 									<input class="form-control" />
@@ -35,7 +44,7 @@
 							</div>
 							<div class="row my-1">
 								<div class="col-3">
-									<label>Phone</label>
+									<label>Addresse</label>
 								</div>
 								<div class="col-9">
 									<input class="form-control" />
@@ -43,31 +52,23 @@
 							</div>
 							<div class="row my-1">
 								<div class="col-3">
-									<label>Street Address</label>
+									<label>Ville</label>
 								</div>
 								<div class="col-9">
 									<input class="form-control" />
 								</div>
 							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>City</label>
-								</div>
-								<div class="col-9">
-									<input class="form-control" />
-								</div>
-							</div>
-							<div class="row my-1">
+							@* <div class="row my-1">
 								<div class="col-3">
 									<label>State</label>
-								</div>
+								</div> *@
 								<div class="col-9">
 									<input class="form-control" />
 								</div>
 							</div>
 							<div class="row my-1">
 								<div class="col-3">
-									<label>Postal Code</label>
+								<label>CodePostal</label>
 								</div>
 								<div class="col-9">
 									<input class="form-control" />
